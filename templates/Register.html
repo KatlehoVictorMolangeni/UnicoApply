@@ -1,0 +1,184 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register Account | Unico</title>
+    <!-- GOOGLE FONTS -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Sora:wght@400;600;700&display=swap" rel="stylesheet">
+<!-- REMIX ICON -->
+<link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
+
+<!-- FONT AWESOME (backup) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+
+    <style>
+       /* TYPOGRAPHY SYSTEM */
+body {
+  font-family: "Inter", sans-serif;
+  color: #111;
+}
+
+h1, h2, h3 {
+  font-family: "Sora", sans-serif;
+}
+
+        .wrapper {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .wrapper h1 {
+            font-size: 28px;
+            margin-bottom: 5px;
+            color: #0b1c3d;
+        }
+
+        .wrapper p {
+            color: #6c7a89;
+            font-size: 14px;
+        }
+
+        .container {
+            max-width: 480px;
+            margin: 30px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+            text-align: left;
+        }
+
+        .row {
+            display: flex;
+            gap: 10px;
+        }
+
+        .row div {
+            flex: 1;
+        }
+
+        label {
+            font-size: 13px;
+            color: #333;
+            margin-bottom: 4px;
+            display: block;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            border: 1px solid #e0e6ed;
+            background: #f9fafc;
+            font-size: 14px;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #4a90e2;
+            background: #fff;
+        }
+
+        .checkbox {
+            display: flex;
+            align-items: center;
+            font-size: 13px;
+            margin-bottom: 20px;
+        }
+
+        .checkbox input {
+            width: auto;
+            margin-right: 8px;
+        }
+
+        .checkbox a {
+            color: #4a90e2;
+            text-decoration: none;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            background: #dfe4ea;
+            color: #888;
+            border: none;
+            border-radius: 8px;
+            font-size: 15px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #cfd6dd;
+        }
+
+        .error {
+            color: red;
+            font-size: 13px;
+            margin-top: 10px;
+        }
+
+        .logo {
+    width: 80px;
+    height: 80px;
+    padding: 10px;
+    background: #e6f0ff;
+    border-radius: 50%;
+}
+    </style>
+</head>
+
+<body>
+
+<div class="wrapper">
+    <img src="{% static 'images/unico-logo.png' %}" class="logo" alt="Logo">
+    <h1>Create Your Account</h1>
+    <p>Join thousands of South African learners</p>
+</div>
+
+<div class="container">
+    <form method="POST">
+        {% csrf_token %}
+
+        <div class="row">
+            <div>
+                <label>First Name</label>
+                {{ form.first_name }}
+            </div>
+<br>
+            <div>
+                <label>Last Name</label>
+                {{ form.last_name }}
+            </div>
+        </div>
+
+        <label>Email Address</label>
+        {{ form.email }}
+
+        <label>Phone Number</label>
+        {{ form.phone }}
+
+        <label>Password</label>
+        {{ form.password }}
+
+        <label>Confirm Password</label>
+        {{ form.confirm_password }}
+
+        <div class="checkbox">
+            {{ form.agree }}
+            <span>I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></span>
+        </div>
+
+        <button type="submit">Create Account</button>
+
+        {% if form.errors %}
+            <div class="error">
+                {{ form.errors }}
+            </div>
+        {% endif %}
+    </form>
+</div>
+
+</body>
+</html>
